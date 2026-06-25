@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "brandnewday",
+  "version": "1.0",
+
+  "name": "Brand New Day",
+  "description": "A client-side mod that shows statistics and a header image whenever a new Minecraft day starts.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://serilum.com/mod/brand-new-day",
+    "sources": "https://github.com/Serilum/Brand-New-Day",
+    "issues": "https://github.com/Serilum/.issue-tracker/labels/Mod:%20Brand%20New%20Day"
+  },
+
+  "license": "All Right Reserved",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.brandnewday.ModFabric" ], "client": [ "com.natamus.brandnewday.ModFabricClient" ], "modmenu": [ "com.natamus.brandnewday.fabric.config.IntegrateModMenu" ] },
+  "mixins": [
+    "brandnewday.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.12.5",
+    "fabric": "*",
+    "minecraft": ">=1.20",
+    "java": ">=17",
+    "collective": ">=8.32"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+	  " ",
+	  "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+	  " ",
+	  "If you would like to contribute too, check out https://serilum.com/donate.",
+	  " ",
+	  "Membership sponsors:",
+	  " Andrean Olgo",
+	  " AnyankaT",
+	  " aternosorg",
+	  " Cherriesaurus",
+	  " Josh",
+	  " Linda Jansen",
+	  " MWS",
+	  " Tyler Behl"
+  ]
+}

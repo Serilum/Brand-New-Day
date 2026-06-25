@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.brandnewday.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  	
+  ],
+  "client": [
+  	"ClientPacketListenerMixin",
+  	"GuiMixin"
+  ],
+  "server": [
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

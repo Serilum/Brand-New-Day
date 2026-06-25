@@ -1,0 +1,36 @@
+modLoader="javafml"
+loaderVersion="*"
+license="All rights reserved"
+issueTrackerURL="https://github.com/Serilum/.issue-tracker/labels/Mod:%20Brand%20New%20Day"
+logoFile="icon.png"
+
+[[mods]]
+modId="brandnewday"
+version="1.0"
+displayName="Brand New Day"
+displayURL="https://serilum.com/mod/brand-new-day"
+authors="Rick South"
+description='''A client-side mod that shows statistics and a header image whenever a new Minecraft day starts.
+'''
+credits='''Thank you very much to my Membership sponsors for supporting the development of this mod:  
+
+Andrean Olgo, AnyankaT, aternosorg, Cherriesaurus, Josh, Linda Jansen, MWS, Tyler Behl   
+
+If you would like to contribute too, check out https://serilum.com/donate. Appreciate it! <3   
+'''
+
+[[dependencies.brandnewday]]
+    modId="collective"
+    type="required"
+    mandatory=true
+    versionRange="[8.32,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.brandnewday]]
+    modId="minecraft"
+    type="required"
+    mandatory=true
+    versionRange="[1.20.1]"
+    ordering="NONE"
+    side="BOTH"
