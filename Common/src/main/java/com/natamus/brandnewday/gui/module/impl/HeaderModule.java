@@ -1,11 +1,12 @@
 package com.natamus.brandnewday.gui.module.impl;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.natamus.brandnewday.config.ConfigHandler;
 import com.natamus.brandnewday.gui.module.NewDayContext;
 import com.natamus.brandnewday.gui.module.NewDayModule;
 import com.natamus.brandnewday.util.Util;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.util.ARGB;
 
 public class HeaderModule implements NewDayModule {
 	@Override
@@ -23,11 +24,6 @@ public class HeaderModule implements NewDayModule {
 		int textureWidth = Util.getHeaderWidth();
 		int textureHeight = Util.getHeaderHeight();
 
-		RenderSystem.enableBlend();
-		RenderSystem.defaultBlendFunc();
-		RenderSystem.setShaderColor(1f, 1f, 1f, context.alpha / 255f);
-		guiGraphics.blit(Util.HEADER_TEXTURE, x, y, width, height, 0f, 0f, textureWidth, textureHeight, textureWidth, textureHeight);
-		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-		RenderSystem.disableBlend();
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, Util.HEADER_TEXTURE, x, y, 0f, 0f, width, height, textureWidth, textureHeight, textureWidth, textureHeight, ARGB.white(context.alpha));
 	}
 }

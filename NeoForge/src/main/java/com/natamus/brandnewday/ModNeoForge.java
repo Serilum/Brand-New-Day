@@ -24,7 +24,7 @@ public class ModNeoForge {
 
 		modEventBus.addListener(this::loadComplete);
 
-		if (FMLEnvironment.dist.equals(Dist.CLIENT)) {
+		if (FMLEnvironment.getDist().equals(Dist.CLIENT)) {
 			modEventBus.addListener(NeoForgeGuiEvents::onRegisterHud);
 		}
 
@@ -37,7 +37,7 @@ public class ModNeoForge {
 	}
 
 	private void loadComplete(final FMLLoadCompleteEvent event) {
-		if (!FMLEnvironment.dist.equals(Dist.CLIENT)) {
+		if (!FMLEnvironment.getDist().equals(Dist.CLIENT)) {
 			return;
 		}
 

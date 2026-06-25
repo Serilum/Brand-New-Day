@@ -8,7 +8,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.FastColor;
+import net.minecraft.util.ARGB;
 
 public class DayModule implements NewDayModule {
 	private static final int SWOOSH_DELAY_TICKS = 18;
@@ -51,9 +51,9 @@ public class DayModule implements NewDayModule {
 		float roll = hasPreviousDay ? progressOver(context.elapsedTicks, SWOOSH_LENGTH_TICKS) : 1f;
 		float brightness = hasPreviousDay ? progressOver(context.elapsedTicks, COLOUR_LENGTH_TICKS) : 1f;
 
-		guiGraphics.pose().pushPose();
-		guiGraphics.pose().translate(context.screenWidth / 2f, centerY, 0);
-		guiGraphics.pose().scale(scale, scale, 1);
+		guiGraphics.pose().pushMatrix();
+		guiGraphics.pose().translate(context.screenWidth / 2f, centerY);
+		guiGraphics.pose().scale(scale, scale);
 
 		guiGraphics.drawString(font, before, startX, 0, fullColour(context.alpha));
 		guiGraphics.drawString(font, after, afterX, 0, fullColour(context.alpha));
@@ -73,18 +73,18 @@ public class DayModule implements NewDayModule {
 			drawNumber(guiGraphics, font, currentNumber, numberX, (1f - eased) * font.lineHeight, incoming);
 		}
 
-		guiGraphics.pose().popPose();
+		guiGraphics.pose().popMatrix();
 	}
 
 	private void drawNumber(GuiGraphics guiGraphics, Font font, String number, int x, float yOffset, int colour) {
-		guiGraphics.pose().pushPose();
-		guiGraphics.pose().translate(0f, yOffset, 0);
+		guiGraphics.pose().pushMatrix();
+		guiGraphics.pose().translate(0f, yOffset);
 		guiGraphics.drawString(font, Component.literal(number), x, 0, colour);
-		guiGraphics.pose().popPose();
+		guiGraphics.pose().popMatrix();
 	}
 
 	private static int fullColour(int alpha) {
-		return FastColor.ARGB32.color(alpha, ConfigHandler.dayTextRGB_R, ConfigHandler.dayTextRGB_G, ConfigHandler.dayTextRGB_B);
+		return ARGB.color(alpha, ConfigHandler.dayTextRGB_R, ConfigHandler.dayTextRGB_G, ConfigHandler.dayTextRGB_B);
 	}
 
 	private static int numberColour(int alpha, float brightness) {
@@ -92,7 +92,7 @@ public class DayModule implements NewDayModule {
 		int red = (int) (ConfigHandler.dayTextRGB_R * factor);
 		int green = (int) (ConfigHandler.dayTextRGB_G * factor);
 		int blue = (int) (ConfigHandler.dayTextRGB_B * factor);
-		return FastColor.ARGB32.color(alpha, red, green, blue);
+		return ARGB.color(alpha, red, green, blue);
 	}
 
 	private static float progressOver(float elapsedTicks, int length) {

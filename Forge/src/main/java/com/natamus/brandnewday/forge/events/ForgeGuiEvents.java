@@ -1,12 +1,12 @@
 package com.natamus.brandnewday.forge.events;
 
 import com.natamus.brandnewday.gui.NewDayOverlay;
-import com.natamus.collective.globalcallbacks.CollectiveGuiCallback;
+import com.natamus.brandnewday.util.Reference;
+import net.minecraft.resources.Identifier;
+import net.minecraftforge.client.event.AddGuiOverlayLayersEvent;
 
 public class ForgeGuiEvents {
-	public static void register() {
-		CollectiveGuiCallback.ON_GUI_RENDER.register((guiGraphics, deltaTracker) -> {
-			NewDayOverlay.render(guiGraphics, deltaTracker.getGameTimeDeltaPartialTick(false));
-		});
+	public static void onAddGuiLayers(AddGuiOverlayLayersEvent e) {
+		e.getLayeredDraw().add(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "new_day"), (g, dt) -> NewDayOverlay.render(g, dt.getGameTimeDeltaPartialTick(false)));
 	}
 }

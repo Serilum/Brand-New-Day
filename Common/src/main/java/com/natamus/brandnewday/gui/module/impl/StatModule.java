@@ -10,10 +10,10 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.stats.Stats;
 import net.minecraft.stats.StatsCounter;
-import net.minecraft.util.FastColor;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -149,15 +149,15 @@ public class StatModule implements NewDayModule {
 		}
 
 		int valueX = labelWidth + COLUMN_GAP;
-		int keyColour = FastColor.ARGB32.color(context.alpha, ConfigHandler.statsKeyTextRGB_R, ConfigHandler.statsKeyTextRGB_G, ConfigHandler.statsKeyTextRGB_B);
-		int valueColour = FastColor.ARGB32.color(context.alpha, ConfigHandler.statsValueTextRGB_R, ConfigHandler.statsValueTextRGB_G, ConfigHandler.statsValueTextRGB_B);
+		int keyColour = ARGB.color(context.alpha, ConfigHandler.statsKeyTextRGB_R, ConfigHandler.statsKeyTextRGB_G, ConfigHandler.statsKeyTextRGB_B);
+		int valueColour = ARGB.color(context.alpha, ConfigHandler.statsValueTextRGB_R, ConfigHandler.statsValueTextRGB_G, ConfigHandler.statsValueTextRGB_B);
 
 		int lineStep = font.lineHeight + NewDayContext.SPACING;
 		int blockHeight = (order.size() + 1) * lineStep - NewDayContext.SPACING;
 
-		guiGraphics.pose().pushPose();
-		guiGraphics.pose().translate(LEFT_MARGIN, context.screenHeight / 2f, 0);
-		guiGraphics.pose().scale(context.scale, context.scale, 1);
+		guiGraphics.pose().pushMatrix();
+		guiGraphics.pose().translate(LEFT_MARGIN, context.screenHeight / 2f);
+		guiGraphics.pose().scale(context.scale, context.scale);
 
 		int y = -blockHeight / 2;
 		Component summary = Component.translatable("collective.brandnewday.summary").withStyle(ChatFormatting.UNDERLINE);
@@ -171,7 +171,7 @@ public class StatModule implements NewDayModule {
 			y += lineStep;
 		}
 
-		guiGraphics.pose().popPose();
+		guiGraphics.pose().popMatrix();
 	}
 
 	private long computeDelta(int index, long current) {
@@ -225,16 +225,16 @@ public class StatModule implements NewDayModule {
 		return total;
 	}
 
-	private static final ResourceLocation[] DISTANCE_STATS = {
+	private static final Identifier[] DISTANCE_STATS = {
 		Stats.WALK_ONE_CM, Stats.SPRINT_ONE_CM, Stats.CROUCH_ONE_CM, Stats.SWIM_ONE_CM,
 		Stats.WALK_ON_WATER_ONE_CM, Stats.WALK_UNDER_WATER_ONE_CM, Stats.CLIMB_ONE_CM, Stats.FLY_ONE_CM,
 		Stats.MINECART_ONE_CM, Stats.BOAT_ONE_CM, Stats.PIG_ONE_CM, Stats.HORSE_ONE_CM, Stats.STRIDER_ONE_CM,
-		Stats.AVIATE_ONE_CM
+		Stats.AVIATE_ONE_CM, Stats.HAPPY_GHAST_ONE_CM, Stats.NAUTILUS_ONE_CM
 	};
 
 	private static long distanceTraveled(StatsCounter stats) {
 		long cm = 0L;
-		for (ResourceLocation stat : DISTANCE_STATS) {
+		for (Identifier stat : DISTANCE_STATS) {
 			cm += stats.getValue(Stats.CUSTOM, stat);
 		}
 

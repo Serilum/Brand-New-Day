@@ -8,7 +8,8 @@ import com.natamus.collective.check.ShouldLoadCheck;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.minecraft.resources.Identifier;
 
 public class ModFabricClient implements ClientModInitializer {
 	@Override
@@ -23,7 +24,7 @@ public class ModFabricClient implements ClientModInitializer {
 	private void registerEvents() {
 		ClientTickEvents.END_CLIENT_TICK.register(ClientEvents::onClientTick);
 
-		HudRenderCallback.EVENT.register((g, dt) -> NewDayOverlay.render(g, dt.getGameTimeDeltaPartialTick(false)));
+		HudElementRegistry.addLast(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "new_day"), (g, dt) -> NewDayOverlay.render(g, dt.getGameTimeDeltaPartialTick(false)));
 
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> FabricCommandNewDay.register(dispatcher));
 	}

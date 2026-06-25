@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.NativeImage;
 import com.natamus.collective.functions.DataFunctions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 public class Util {
-	public static final ResourceLocation HEADER_TEXTURE = ResourceLocation.fromNamespaceAndPath(Reference.MOD_ID, "header");
+	public static final Identifier HEADER_TEXTURE = Identifier.fromNamespaceAndPath(Reference.MOD_ID, "header");
 
 	private static final String rootConfigPath = DataFunctions.getConfigDirectory() + File.separator + Reference.MOD_ID;
 	private static final File imageFile = new File(rootConfigPath + File.separator + "header" + File.separator + "header.png");
@@ -42,7 +42,7 @@ public class Util {
 		headerWidth = image.getWidth();
 		headerHeight = image.getHeight();
 
-		Minecraft.getInstance().getTextureManager().register(HEADER_TEXTURE, new DynamicTexture(image));
+		Minecraft.getInstance().getTextureManager().register(HEADER_TEXTURE, new DynamicTexture(HEADER_TEXTURE::toString, image));
 		headerLoaded = true;
 	}
 

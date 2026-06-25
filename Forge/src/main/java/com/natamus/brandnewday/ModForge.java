@@ -7,9 +7,8 @@ import com.natamus.brandnewday.util.Reference;
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.collective.check.ShouldLoadCheck;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.client.event.AddGuiOverlayLayersEvent;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -17,19 +16,23 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod(Reference.MOD_ID)
 public class ModForge {
-
-	public ModForge() {
+	
+	public ModForge(FMLJavaModLoadingContext modLoadingContext) {
 		if (!ShouldLoadCheck.shouldLoad(Reference.MOD_ID)) {
 			return;
 		}
 
-		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		modEventBus.addListener(this::loadComplete);
+		BusGroup busGroup = modLoadingContext.getModBusGroup();
+		FMLLoadCompleteEvent.getBus(busGroup).addListener(this::loadComplete);
+
+		if (FMLEnvironment.dist.equals(Dist.CLIENT)) {
+			AddGuiOverlayLayersEvent.BUS.addListener(ForgeGuiEvents::onAddGuiLayers);
+		}
 
 		setGlobalConstants();
 		ModCommon.init();
 
-		IntegrateForgeConfig.registerScreen(ModLoadingContext.get());
+		IntegrateForgeConfig.registerScreen(modLoadingContext);
 
 		RegisterMod.register(Reference.NAME, Reference.MOD_ID, Reference.VERSION, Reference.ACCEPTED_VERSIONS);
 	}
@@ -39,8 +42,7 @@ public class ModForge {
 			return;
 		}
 
-		MinecraftForge.EVENT_BUS.register(ForgeClientEvents.class);
-		ForgeGuiEvents.register();
+    	ForgeClientEvents.registerEventsInBus();
 	}
 
 	private static void setGlobalConstants() {
