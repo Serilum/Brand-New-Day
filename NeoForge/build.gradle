@@ -14,10 +14,6 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
-    parchment {
-        minecraftVersion = parchment_minecraft
-        mappingsVersion = parchment_version
-    }
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
@@ -47,9 +43,9 @@ neoForge {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    runtimeOnly "com.natamus.collective-ml:collective-neoforge:${minecraft_version}-${collective_version}"
-    compileOnly "com.natamus.collective-ml:collective-neoforge:${minecraft_version}-${collective_version}"
-    compileOnly "com.natamus.collective-ml:collective:${minecraft_version}-${collective_version}"
+    runtimeOnly "com.natamus.collective-ml:collective-neoforge:${minecraft_display_version}-${collective_version}"
+    compileOnly "com.natamus.collective-ml:collective-neoforge:${minecraft_display_version}-${collective_version}"
+    compileOnly "com.natamus.collective-ml:collective:${minecraft_display_version}-${collective_version}"
 }
 
 // Implement mcgradleconventions loader attribute

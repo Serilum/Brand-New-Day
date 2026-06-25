@@ -21,7 +21,7 @@ public class ClientEvents {
 
 		NewDayOverlay.clientTick();
 
-		long time = level.getDayTime();
+		long time = level.getOverworldClockTime();
 		long day = Math.floorDiv(time, 24000L);
 
 		if (Variables.lastDay == Long.MIN_VALUE) {

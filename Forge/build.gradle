@@ -1,7 +1,7 @@
 plugins {
     id 'multiloader-loader'
     // id 'net.minecraftforge.accesstransformers' version '5.0.1'
-    id 'net.minecraftforge.gradle' version '7.0.0-beta.46'
+    id 'net.minecraftforge.gradle' version '[7.0.17,8)'
     id 'net.minecraftforge.jarjar' version '0.2.3'
     // id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
@@ -20,7 +20,7 @@ repositories {
 }
 
 base {
-    archivesName = "${mod_name}-forge-${minecraft_version}"
+    archivesName = "${mod_name}-forge-${minecraft_display_version}"
 }
 
 // mixin {
@@ -79,9 +79,9 @@ dependencies {
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 
-    runtimeOnly "com.natamus.collective-ml:collective-forge:${minecraft_version}-${collective_version}"
-    compileOnly "com.natamus.collective-ml:collective-forge:${minecraft_version}-${collective_version}"
-    compileOnly "com.natamus.collective-ml:collective:${minecraft_version}-${collective_version}"
+    runtimeOnly "com.natamus.collective-ml:collective-forge:${minecraft_display_version}-${collective_version}"
+    compileOnly "com.natamus.collective-ml:collective-forge:${minecraft_display_version}-${collective_version}"
+    compileOnly "com.natamus.collective-ml:collective:${minecraft_display_version}-${collective_version}"
 }
 
 sourceSets.each {

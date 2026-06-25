@@ -1,6 +1,6 @@
 package com.natamus.brandnewday.gui.module;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 public interface NewDayModule {
 	default void onWorldLoad(String worldKey) { }
@@ -17,5 +17,5 @@ public interface NewDayModule {
 
 	boolean isEnabled();
 
-	void render(GuiGraphics guiGraphics, NewDayContext context);
+	void render(GuiGraphicsExtractor guiGraphics, NewDayContext context);
 }

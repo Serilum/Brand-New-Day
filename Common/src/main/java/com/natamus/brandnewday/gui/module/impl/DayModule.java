@@ -5,7 +5,7 @@ import com.natamus.brandnewday.gui.module.NewDayContext;
 import com.natamus.brandnewday.gui.module.NewDayModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.ARGB;
@@ -22,7 +22,7 @@ public class DayModule implements NewDayModule {
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, NewDayContext context) {
+	public void render(GuiGraphicsExtractor guiGraphics, NewDayContext context) {
 		Font font = Minecraft.getInstance().font;
 		float scale = ConfigHandler.dayFontScale * context.scale;
 		int centerY = context.screenHeight / 2 - (int) (font.lineHeight * scale / 2f);
@@ -55,8 +55,8 @@ public class DayModule implements NewDayModule {
 		guiGraphics.pose().translate(context.screenWidth / 2f, centerY);
 		guiGraphics.pose().scale(scale, scale);
 
-		guiGraphics.drawString(font, before, startX, 0, fullColour(context.alpha));
-		guiGraphics.drawString(font, after, afterX, 0, fullColour(context.alpha));
+		guiGraphics.text(font, before, startX, 0, fullColour(context.alpha));
+		guiGraphics.text(font, after, afterX, 0, fullColour(context.alpha));
 
 		if (roll <= 0f) {
 			drawNumber(guiGraphics, font, previousNumber, numberX, 0f, numberColour(context.alpha, 0f));
@@ -76,10 +76,10 @@ public class DayModule implements NewDayModule {
 		guiGraphics.pose().popMatrix();
 	}
 
-	private void drawNumber(GuiGraphics guiGraphics, Font font, String number, int x, float yOffset, int colour) {
+	private void drawNumber(GuiGraphicsExtractor guiGraphics, Font font, String number, int x, float yOffset, int colour) {
 		guiGraphics.pose().pushMatrix();
 		guiGraphics.pose().translate(0f, yOffset);
-		guiGraphics.drawString(font, Component.literal(number), x, 0, colour);
+		guiGraphics.text(font, Component.literal(number), x, 0, colour);
 		guiGraphics.pose().popMatrix();
 	}
 

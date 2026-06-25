@@ -46,7 +46,7 @@ public class NewDayFunctions {
 			return 0L;
 		}
 
-		return Math.floorDiv(mc.level.getDayTime(), 24000L);
+		return Math.floorDiv(mc.level.getOverworldClockTime(), 24000L);
 	}
 
 	public static MutableComponent last() {

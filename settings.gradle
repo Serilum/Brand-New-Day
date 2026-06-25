@@ -10,9 +10,7 @@ pluginManagement {
                 }
             }
             filter {
-                includeGroup('net.fabricmc')
-                includeGroup('net.fabricmc.unpick')
-                includeGroup('fabric-loom')
+                includeGroupAndSubgroups('net.fabricmc')
             }
         }
         exclusiveContent {
@@ -45,7 +43,7 @@ plugins {
 }
 
 // This should match the folder name of the project, or else IDEA may complain (see https://youtrack.jetbrains.com/issue/IDEA-317606)
-rootProject.name = 'Brand-New-Day-1,21,11'
+rootProject.name = 'Brand-New-Day-26,1,2'
 include("Common")
 include("Fabric")
 include("Forge")

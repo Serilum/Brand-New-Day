@@ -7,7 +7,7 @@ import com.natamus.brandnewday.gui.module.impl.DayModule;
 import com.natamus.brandnewday.gui.module.impl.HeaderModule;
 import com.natamus.brandnewday.gui.module.impl.StatModule;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 
 import java.util.List;
 
@@ -95,7 +95,7 @@ public final class NewDayOverlay {
 		}
 	}
 
-	public static void render(GuiGraphics guiGraphics, float partial) {
+	public static void render(GuiGraphicsExtractor guiGraphics, float partial) {
 		if (ticksLeft <= 0) {
 			return;
 		}

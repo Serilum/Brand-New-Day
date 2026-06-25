@@ -29,6 +29,6 @@ If you would like to contribute too, check out https://serilum.com/donate. Appre
 [[dependencies.brandnewday]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.21.11]"
+    versionRange="[26.1.2]"
     ordering="NONE"
     side="BOTH"

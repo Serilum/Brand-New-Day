@@ -7,7 +7,7 @@ import com.natamus.brandnewday.util.StatStorage;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -128,7 +128,7 @@ public class StatModule implements NewDayModule {
 	}
 
 	@Override
-	public void render(GuiGraphics guiGraphics, NewDayContext context) {
+	public void render(GuiGraphicsExtractor guiGraphics, NewDayContext context) {
 		Font font = Minecraft.getInstance().font;
 
 		List<Integer> order = new ArrayList<>();
@@ -161,13 +161,13 @@ public class StatModule implements NewDayModule {
 
 		int y = -blockHeight / 2;
 		Component summary = Component.translatable("collective.brandnewday.summary").withStyle(ChatFormatting.UNDERLINE);
-		guiGraphics.drawString(font, summary, 0, y, keyColour);
+		guiGraphics.text(font, summary, 0, y, keyColour);
 		y += lineStep;
 
 		for (int i : order) {
 			StatLine line = LINES.get(i);
-			guiGraphics.drawString(font, Component.translatable(line.labelKey()), 0, y, keyColour);
-			guiGraphics.drawString(font, valueComponent(line, delta[i]), valueX, y, valueColour);
+			guiGraphics.text(font, Component.translatable(line.labelKey()), 0, y, keyColour);
+			guiGraphics.text(font, valueComponent(line, delta[i]), valueX, y, valueColour);
 			y += lineStep;
 		}
 
