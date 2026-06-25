@@ -1,16 +1,12 @@
 package com.natamus.brandnewday.forge.events;
 
 import com.natamus.brandnewday.gui.NewDayOverlay;
-import com.natamus.brandnewday.util.Reference;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import com.natamus.collective.globalcallbacks.CollectiveGuiCallback;
 
 public class ForgeGuiEvents {
-
-	@SubscribeEvent
-	public static void onRegisterOverlays(RegisterGuiOverlaysEvent event) {
-		event.registerAboveAll(Reference.MOD_ID, (gui, guiGraphics, partialTick, screenWidth, screenHeight) ->
-			NewDayOverlay.render(guiGraphics, partialTick)
-		);
+	public static void register() {
+		CollectiveGuiCallback.ON_GUI_RENDER.register((guiGraphics, deltaTracker) -> {
+			NewDayOverlay.render(guiGraphics, deltaTracker.getGameTimeDeltaPartialTick(false));
+		});
 	}
 }

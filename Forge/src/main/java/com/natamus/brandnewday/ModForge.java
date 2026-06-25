@@ -25,9 +25,6 @@ public class ModForge {
 
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener(this::loadComplete);
-		if (FMLEnvironment.dist.equals(Dist.CLIENT)) {
-			modEventBus.register(ForgeGuiEvents.class);
-		}
 
 		setGlobalConstants();
 		ModCommon.init();
@@ -43,6 +40,7 @@ public class ModForge {
 		}
 
 		MinecraftForge.EVENT_BUS.register(ForgeClientEvents.class);
+		ForgeGuiEvents.register();
 	}
 
 	private static void setGlobalConstants() {

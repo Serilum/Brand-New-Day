@@ -8,7 +8,7 @@ logoFile="icon.png"
 modId="brandnewday"
 version="1.0"
 displayName="Brand New Day"
-displayURL="https://serilum.com/mod/brand-new-day"
+displayURL="https://curseforge.com/minecraft/mc-mods/brand-new-day"
 authors="Rick South"
 description='''A client-side mod that shows statistics and a header image whenever a new Minecraft day starts.
 '''
@@ -21,14 +21,17 @@ If you would like to contribute too, check out https://serilum.com/donate. Appre
 
 [[dependencies.brandnewday]]
     modId="collective"
-    mandatory=true
+    type="required"
     versionRange="[8.32,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.brandnewday]]
     modId="minecraft"
-    mandatory=true
+    type="required"
     versionRange="[1.21,1.21.1]"
     ordering="NONE"
     side="BOTH"
+
+[[mixins]]
+    config = "brandnewday.mixins.json"

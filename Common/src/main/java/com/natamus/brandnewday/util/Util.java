@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 public class Util {
-	public static final ResourceLocation HEADER_TEXTURE = new ResourceLocation(Reference.MOD_ID, "header");
+	public static final ResourceLocation HEADER_TEXTURE = ResourceLocation.fromNamespaceAndPath(Reference.MOD_ID, "header");
 
 	private static final String rootConfigPath = DataFunctions.getConfigDirectory() + File.separator + Reference.MOD_ID;
 	private static final File imageFile = new File(rootConfigPath + File.separator + "header" + File.separator + "header.png");
