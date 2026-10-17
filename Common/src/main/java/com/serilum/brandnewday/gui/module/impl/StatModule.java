@@ -1,5 +1,6 @@
 package com.serilum.brandnewday.gui.module.impl;
 
+import com.natamus.collective.functions.ColourFunctions;
 import com.serilum.brandnewday.config.ConfigHandler;
 import com.serilum.brandnewday.gui.module.NewDayContext;
 import com.serilum.brandnewday.gui.module.NewDayModule;
@@ -149,8 +150,8 @@ public class StatModule implements NewDayModule {
 		}
 
 		int valueX = labelWidth + COLUMN_GAP;
-		int keyColour = ARGB.color(context.alpha, ConfigHandler.statsKeyTextRGB_R, ConfigHandler.statsKeyTextRGB_G, ConfigHandler.statsKeyTextRGB_B);
-		int valueColour = ARGB.color(context.alpha, ConfigHandler.statsValueTextRGB_R, ConfigHandler.statsValueTextRGB_G, ConfigHandler.statsValueTextRGB_B);
+		int keyColour = ARGB.color(context.alpha, ColourFunctions.getRgbColour(ConfigHandler.statsKeyTextRGB));
+		int valueColour = ARGB.color(context.alpha, ColourFunctions.getRgbColour(ConfigHandler.statsValueTextRGB));
 
 		int lineStep = font.lineHeight + NewDayContext.SPACING;
 		int blockHeight = (order.size() + 1) * lineStep - NewDayContext.SPACING;

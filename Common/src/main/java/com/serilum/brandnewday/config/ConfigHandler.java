@@ -26,21 +26,15 @@ public class ConfigHandler extends DuskConfig {
 	@Entry(min = 0, max = 1000) public static int headerImageYOffset = 10;
 
 	@Entry(min = 1, max = 8) public static int dayFontScale = 3;
-	@Entry(min = 0, max = 255) public static int dayTextRGB_R = 218;
-	@Entry(min = 0, max = 255) public static int dayTextRGB_G = 164;
-	@Entry(min = 0, max = 255) public static int dayTextRGB_B = 40;
+	@Entry(rgb = true) public static String dayTextRGB = "218,164,40";
 
 	@Entry public static boolean showMobsKilled = true;
 	@Entry public static boolean showBlocksBroken = true;
 	@Entry public static boolean showDistanceTraveled = true;
 	@Entry public static boolean showDeaths = true;
 	@Entry public static boolean showItemsCrafted = true;
-	@Entry(min = 0, max = 255) public static int statsKeyTextRGB_R = 216;
-	@Entry(min = 0, max = 255) public static int statsKeyTextRGB_G = 196;
-	@Entry(min = 0, max = 255) public static int statsKeyTextRGB_B = 180;
-	@Entry(min = 0, max = 255) public static int statsValueTextRGB_R = 255;
-	@Entry(min = 0, max = 255) public static int statsValueTextRGB_G = 234;
-	@Entry(min = 0, max = 255) public static int statsValueTextRGB_B = 210;
+	@Entry(rgb = true) public static String statsKeyTextRGB = "216,196,180";
+	@Entry(rgb = true) public static String statsValueTextRGB = "255,234,210";
 
 	public static void initConfig() {
 		configMetaData.put("showHeader", Arrays.asList(
@@ -83,14 +77,8 @@ public class ConfigHandler extends DuskConfig {
 		configMetaData.put("dayFontScale", Arrays.asList(
 			"How much bigger the day number text should be rendered. 1 is the normal font size."
 		));
-		configMetaData.put("dayTextRGB_R", Arrays.asList(
-			"The red RGB value for the day number text."
-		));
-		configMetaData.put("dayTextRGB_G", Arrays.asList(
-			"The green RGB value for the day number text."
-		));
-		configMetaData.put("dayTextRGB_B", Arrays.asList(
-			"The blue RGB value for the day number text."
+		configMetaData.put("dayTextRGB", Arrays.asList(
+			"The colour of the day number text, as red, green and blue values from 0 to 255."
 		));
 
 		configMetaData.put("showMobsKilled", Arrays.asList(
@@ -108,23 +96,11 @@ public class ConfigHandler extends DuskConfig {
 		configMetaData.put("showItemsCrafted", Arrays.asList(
 			"If the items crafted line is shown in the day summary."
 		));
-		configMetaData.put("statsKeyTextRGB_R", Arrays.asList(
-			"The red RGB value for the stat labels (the key text)."
+		configMetaData.put("statsKeyTextRGB", Arrays.asList(
+			"The colour of the stat labels (the key text), as red, green and blue values from 0 to 255."
 		));
-		configMetaData.put("statsKeyTextRGB_G", Arrays.asList(
-			"The green RGB value for the stat labels (the key text)."
-		));
-		configMetaData.put("statsKeyTextRGB_B", Arrays.asList(
-			"The blue RGB value for the stat labels (the key text)."
-		));
-		configMetaData.put("statsValueTextRGB_R", Arrays.asList(
-			"The red RGB value for the stat values (the numbers)."
-		));
-		configMetaData.put("statsValueTextRGB_G", Arrays.asList(
-			"The green RGB value for the stat values (the numbers)."
-		));
-		configMetaData.put("statsValueTextRGB_B", Arrays.asList(
-			"The blue RGB value for the stat values (the numbers)."
+		configMetaData.put("statsValueTextRGB", Arrays.asList(
+			"The colour of the stat values (the numbers), as red, green and blue values from 0 to 255."
 		));
 
 		DuskConfig.init(Reference.NAME, Reference.MOD_ID, ConfigHandler.class);
