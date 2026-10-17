@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "brandnewday",
-  "version": "1.1",
+  "version": "1.2",
 
   "name": "Brand New Day",
   "description": "A client-side mod that shows statistics and a header image whenever a new Minecraft day starts.",
@@ -26,13 +26,13 @@
     "fabric-api": "*",
     "minecraft": ">=26.2",
     "java": ">=25",
-    "collective": ">=8.40"
+    "collective": ">=8.57"
   },
 
   "custom": {
     "modmenu": {
       "links": {
-        "Donate <3" : "https://serilum.com/donate"
+        "❤ Patreon" : "https://link.serilum.com/patreon"
       }
     }
   },
@@ -44,7 +44,6 @@
 	  "If you would like to contribute too, check out https://serilum.com/donate",
 	  " ",
 	  "Membership sponsors:",
-	  " Andrean Olgo",
 	  " AnyankaT",
 	  " aternosorg",
 	  " Cherriesaurus",
