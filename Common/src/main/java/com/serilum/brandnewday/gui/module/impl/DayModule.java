@@ -1,5 +1,6 @@
 package com.serilum.brandnewday.gui.module.impl;
 
+import com.natamus.collective.functions.ColourFunctions;
 import com.serilum.brandnewday.config.ConfigHandler;
 import com.serilum.brandnewday.gui.module.NewDayContext;
 import com.serilum.brandnewday.gui.module.NewDayModule;
@@ -84,14 +85,15 @@ public class DayModule implements NewDayModule {
 	}
 
 	private static int fullColour(int alpha) {
-		return FastColor.ARGB32.color(alpha, ConfigHandler.dayTextRGB_R, ConfigHandler.dayTextRGB_G, ConfigHandler.dayTextRGB_B);
+		return FastColor.ARGB32.color(alpha, ColourFunctions.getRgbColour(ConfigHandler.dayTextRGB));
 	}
 
 	private static int numberColour(int alpha, float brightness) {
 		float factor = ROLLING_BRIGHTNESS + (1f - ROLLING_BRIGHTNESS) * brightness;
-		int red = (int) (ConfigHandler.dayTextRGB_R * factor);
-		int green = (int) (ConfigHandler.dayTextRGB_G * factor);
-		int blue = (int) (ConfigHandler.dayTextRGB_B * factor);
+		int rgb = ColourFunctions.getRgbColour(ConfigHandler.dayTextRGB);
+		int red = (int) (((rgb >> 16) & 255) * factor);
+		int green = (int) (((rgb >> 8) & 255) * factor);
+		int blue = (int) ((rgb & 255) * factor);
 		return FastColor.ARGB32.color(alpha, red, green, blue);
 	}
 
